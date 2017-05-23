@@ -17,11 +17,19 @@ class Counter extends React.Component {
   }
 }
 
+Counter.defaultProps = {
+  value: 1
+};
+
+Counter.propTypes = {
+  value: React.PropTypes.number
+};
+
 const App = () => (
   <div>
-    <Counter value={1} />
-    <Counter value={2} />
-    <Counter value={3} />
+    <Counter />
+    <Counter value={1024} />
+    <Counter value="abc" />
   </div>
 );
 
