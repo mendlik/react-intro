@@ -1,3 +1,10 @@
+const Loading = () => <div>Loading...</div>;
+
+const List = ({ items }) => {
+  const listItems = items.map(item => <li key={item}>{item}</li>);
+  return <ul>{listItems}</ul>;
+};
+
 class Countries extends React.Component {
   constructor(props) {
     super(props);
@@ -13,8 +20,8 @@ class Countries extends React.Component {
   }
   render() {
     return this.state.countries ?
-      <div>Countries loaded</div> :
-      <div>Loading...</div>;
+      <List items={this.state.countries} /> :
+      <Loading />;
   }
 }
 
