@@ -3,6 +3,14 @@ class Countries extends React.Component {
     super(props);
     this.state = { countries: null };
   }
+  componentDidMount() {
+    this.fetchCountries();
+  }
+  fetchCountries() {
+    fetch('./countries.json')
+      .then(resp => resp.json())
+      .then(resp => this.setState({ countries: resp.countries }));
+  }
   render() {
     return this.state.countries ?
       <div>Countries loaded</div> :
