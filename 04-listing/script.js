@@ -1,6 +1,12 @@
 class Countries extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = { countries: null };
+  }
   render() {
-    return <div>Countries</div>;
+    return this.state.countries ?
+      <div>Countries loaded</div> :
+      <div>Loading...</div>;
   }
 }
 
