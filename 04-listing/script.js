@@ -4,7 +4,7 @@ class Countries extends React.Component {
     this.state = { countries: null };
   }
   componentDidMount() {
-    this.fetchCountries();
+    setTimeout(() => this.fetchCountries(), 500);
   }
   fetchCountries() {
     fetch('./countries.json')
