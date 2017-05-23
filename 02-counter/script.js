@@ -1,11 +1,17 @@
-// Same as:
-// const Counter = () => <div>Counter</div>
-
 class Counter extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = { value: 0 };
+  }
+  increment() {
+    this.setState(prevState => ({
+      value: prevState.value + 1
+    }));
+  }
   render() {
     return (
       <div>
-        Counter
+        <button onClick={() => this.increment()}>+</button> {this.state.value}
       </div>
     );
   }
