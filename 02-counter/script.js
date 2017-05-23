@@ -1,7 +1,7 @@
 class Counter extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { value: 0 };
+    this.state = { value: props.value };
   }
   increment() {
     this.setState(prevState => ({
@@ -19,7 +19,9 @@ class Counter extends React.Component {
 
 const App = () => (
   <div>
-    <Counter />
+    <Counter value={1} />
+    <Counter value={2} />
+    <Counter value={3} />
   </div>
 );
 
