@@ -6,9 +6,22 @@
 </head>
 <body>
   <div id="root"></div>
-  <script src="//cdnjs.cloudflare.com/ajax/libs/react/15.3.1/react.js"></script>
-  <script src="//cdnjs.cloudflare.com/ajax/libs/react/15.3.1/react-dom.min.js"></script>
-  <script src="//cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.23.1/babel.min.js"></script>
-  <script type="text/babel" src="./script.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/systemjs/0.19.34/system.js"></script>
+  <script>
+    System.config({
+      transpiler: 'babel',
+      packages: {
+        './app': { defaultExtension: 'js' }
+      },
+      map: {
+        'react-dom': '//cdnjs.cloudflare.com/ajax/libs/react/15.3.1/react-dom.min.js',
+        'react': '//cdnjs.cloudflare.com/ajax/libs/react/15.3.1/react.min.js',
+        'babel': '//cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.38/browser.min.js'
+      }
+    });
+    System
+      .import('./script.js')
+      .catch(err => console.error('Global error:', err));
+  </script>
 </body>
 </html>
