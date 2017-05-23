@@ -5,6 +5,29 @@ const List = ({ items }) => {
   return <ul>{listItems}</ul>;
 };
 
+class FilterableList extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = { filter: '' };
+  }
+  handleFilterChange(event) {
+    this.setState({
+      filter: event.target.value
+    });
+  }
+  render() {
+    const filter = this.state.filter;
+    const filtered = this.props.items
+      .filter(item => item.includes(filter));
+    return (
+      <div>
+        <input onChange={event => this.handleFilterChange(event)} />
+        <List items={filtered} />
+      </div>
+    );
+  }
+}
+
 class Countries extends React.Component {
   constructor(props) {
     super(props);
@@ -20,7 +43,7 @@ class Countries extends React.Component {
   }
   render() {
     return this.state.countries ?
-      <List items={this.state.countries} /> :
+      <FilterableList items={this.state.countries} /> :
       <Loading />;
   }
 }
