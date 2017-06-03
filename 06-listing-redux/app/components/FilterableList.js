@@ -1,27 +1,25 @@
-import React from 'react';
+import React, { PropTypes } from 'react';
 import List from './List';
 
-class FilterableList extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = { filter: '' };
-  }
-  handleFilterChange(event) {
-    this.setState({
-      filter: event.target.value
-    });
-  }
-  render() {
-    const filter = this.state.filter;
-    const filtered = this.props.items
-      .filter(item => item.includes(filter));
-    return (
-      <div>
-        <input onChange={event => this.handleFilterChange(event)} />
-        <List items={filtered} />
-      </div>
-    );
-  }
-}
+const FilterableList = ({ items, filter, onFilterChange }) => {
+  const filtered = items.filter(item => item.includes(filter));
+  return (
+    <div>
+      <input value={filter} onChange={e => onFilterChange(e.target.value)} />
+      <List items={filtered} />
+    </div>
+  );
+};
+
+FilterableList.propTypes = {
+  items: PropTypes.array,
+  filter: PropTypes.string,
+  onFilterChange: PropTypes.func.isRequired
+};
+
+FilterableList.defaultProps = {
+  items: [],
+  filter: ''
+};
 
 export default FilterableList;
